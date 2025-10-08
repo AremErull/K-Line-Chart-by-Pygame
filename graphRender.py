@@ -4,14 +4,14 @@ root = Tk()
 root.withdraw()
 MAX = max
 MIN = min
-n = open("setting.tr","r").read()
+n = open("option.txt","r").read()
 proportion = float(n.split(",")[1])
 with open("DATA/graph.json","r") as file:
     read = file.read()
 if read != "":
     data = json.loads(read);pygame.init()
     screen = pygame.display.set_mode((960,560))
-    pygame.display.set_caption("K线图")
+    pygame.display.set_caption("K-Line Chart")
     data = data[-60:]
     avg = []
     min = []
@@ -47,10 +47,11 @@ if read != "":
             for i in shops:
                 volume += int(i.split(",")[0])
                 value += int(i.split(",")[0])*int(i.split(",")[1])
-        print("当前总收益",func.CAMCurrency(volume*cl[-1]-value),"去除手续费为",func.CAMCurrency(volume*cl[-1]*0.97-value))
+        print("当前总收益",volume*cl[-1]-value)
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
 else:
+
     messagebox.showerror("Error","No data to graph")
