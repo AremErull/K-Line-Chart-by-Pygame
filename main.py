@@ -1,7 +1,7 @@
 import json,subprocess
 data = {"average":[],"max":[],"min":[],"open":[],"close":[]}
-n = open("setting.tr","r").read().split(",")[0]
-with open(f"DATA/{n}/input.scd","r") as datas:
+n = open("option.txt","r").read().split(",")[0]
+with open(f"DATA/{n}/input.txt","r") as datas:
     origin = datas.read().split(";")
     for i in origin:
         total = list(map(float,i.split(",")))
@@ -21,4 +21,5 @@ with open("DATA/graph.json","w") as file:
             "close":data["close"][j]
         })
     file.write(str(json.dumps(dataToShare)))
+
 subprocess.run(["python", "graphRender.py"])
