@@ -1,4 +1,4 @@
-import json,pygame,sys,func
+import json,pygame,sys
 from tkinter import messagebox,Tk
 root = Tk()
 root.withdraw()
@@ -38,7 +38,7 @@ if read != "":
         pygame.draw.line(screen,(250,250,250),(10+i*15,550-avg[i]/proportion),(25+i*15,550-avg[i+1]/proportion),1)
     pygame.display.flip()
     q = n.split(",")[0]
-    with open(f"DATA/{q}/shop.scd","r") as f:
+    with open(f"DATA/{q}/history.txt","r") as f:
         value = 0
         volume = 0
         reading = f.read()
@@ -55,3 +55,4 @@ if read != "":
 else:
 
     messagebox.showerror("Error","No data to graph")
+
